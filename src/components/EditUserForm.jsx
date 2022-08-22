@@ -4,25 +4,29 @@ import React from "react";
 import { FaUserAlt, FaRegCalendarAlt } from "react-icons/fa";
 import { MdEmail, MdLock } from "react-icons/md";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 const EditUsersForm = ({ reloadCards, dataCard, editUserfn }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({});
+  } = useForm();
 
-  const onSubmit = (data, editUser, dataCard) => {
-    console.log(dataCard);
-    axios
-      .patch(`https://users-crud1.herokuapp.com/users/${dataCard?.id}/`, data)
-      .then((res) => {
-        console.log(res);
-        reloadCards();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const editUserfetched = (data) => {
+    fetch(`https://users-crud1.herokuapp.com/users/${dataCard.id}/`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+    editUserfn();
+    reloadCards();
+  };
+
+  const onSubmit = (data) => {
+    editUserfetched(data);
   };
   return (
     <div className="mt-5 flex flex-col place-content-center gap-4">
@@ -83,7 +87,7 @@ const EditUsersForm = ({ reloadCards, dataCard, editUserfn }) => {
           <button
             onClick={() => editUserfn()}
             type="button"
-            className=" inline-block rounded-lg bg-red-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
+            className=" inline-block rounded-lg bg-red-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md shadow-red-500/50 transition duration-150 ease-in-out hover:bg-red-700  hover:shadow-lg hover:shadow-red-500/50 focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
           >
             Cancel
           </button>
@@ -93,7 +97,6 @@ const EditUsersForm = ({ reloadCards, dataCard, editUserfn }) => {
           >
             Edit user
           </button>
-          <button onClick={() => console.log(dataCard.id)}>prueba</button>
         </div>
       </form>
     </div>

@@ -4,7 +4,6 @@ import React from "react";
 import { FaUserAlt, FaRegCalendarAlt } from "react-icons/fa";
 import { MdEmail, MdLock } from "react-icons/md";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 const UsersForm = ({ reloadCards }) => {
   const {
     register,
@@ -13,14 +12,20 @@ const UsersForm = ({ reloadCards }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios
-      .post("https://users-crud1.herokuapp.com/users/", data)
-      .then((res) => {
-        console.log(res);
+    fetch("https://users-crud1.herokuapp.com/users/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
         reloadCards();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.error("Error:", error);
       });
   };
   return (

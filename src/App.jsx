@@ -13,9 +13,9 @@ function App() {
   };
   const reloadCards = () => setReload(!reload);
   return (
-    <div className="flex min-h-screen bg-slate-500">
-      <div className="w-7/12 bg-red-200">
-        <section>
+    <div className="flex max-h-full min-h-screen bg-slate-500">
+      <div className="w-7/12 bg-gradient-to-b from-cyan-500 to-blue-500">
+        <section className=" h-full overflow-y-scroll">
           <CardsContainer
             reload={reload}
             editUserfn={editUserfn}
@@ -23,11 +23,17 @@ function App() {
           />
         </section>
       </div>
-      <div className="w-5/12 bg-blue-200">
-        <section>
+      <div className="w-5/12 bg-neutral-100">
+        <section className="max-h-full ">
           <UsersForm reloadCards={reloadCards} />
         </section>
-        {editUser && <Modal dataCard={dataCard} editUserfn={editUserfn} />}
+        {editUser && (
+          <Modal
+            dataCard={dataCard}
+            reloadCards={reloadCards}
+            editUserfn={editUserfn}
+          />
+        )}
       </div>
     </div>
   );

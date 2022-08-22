@@ -28,11 +28,11 @@ const Card = ({ user, reloadCards, editUserfn }) => {
         <div className="flex gap-8">
           <GrEdit
             onClick={() => editUserfn(user)}
-            className=" my-auto text-3xl hover:bg-red-700 "
+            className=" ransition-all my-auto text-3xl duration-200 hover:scale-110 "
           />
           <GrTrash
             onClick={deleteUser}
-            className=" my-auto text-3xl hover:bg-red-700"
+            className=" my-auto text-3xl transition-all duration-200 hover:scale-110 "
           />
         </div>
       </div>

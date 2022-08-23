@@ -33,7 +33,7 @@ const UsersForm = ({ reloadCards }) => {
       <h2 className="text-center text-2xl font-bold">Add New User</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-2 p-4"
+        className="flex flex-col gap-2 p-5"
       >
         <div className=" relative flex gap-2">
           <FaUserAlt className="my-auto text-3xl " />

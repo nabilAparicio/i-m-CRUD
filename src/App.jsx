@@ -24,7 +24,7 @@ function App() {
         </section>
       </div>
       <div className="w-5/12 bg-neutral-100">
-        <section className="max-h-full ">
+        <section className="max-h-full">
           <UsersForm reloadCards={reloadCards} />
         </section>
         {editUser && (

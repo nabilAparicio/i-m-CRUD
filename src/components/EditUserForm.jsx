@@ -20,9 +20,11 @@ const EditUsersForm = ({ reloadCards, dataCard, editUserfn }) => {
       },
     })
       .then((response) => response.json())
-      .then((json) => console.log(json));
-    editUserfn();
-    reloadCards();
+      .then((json) => {
+        console.log(json);
+        editUserfn();
+        reloadCards();
+      });
   };
 
   const onSubmit = (data) => {
